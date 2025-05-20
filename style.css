@@ -1,0 +1,312 @@
+/* Base styles */
+:root {
+    /* Hero colors */
+    --avenger-1-color: #cc0000; /* Thor - Red */
+    --avenger-2-color: #ff6600; /* Iron Man - Orange */
+    --avenger-3-color: #00aa00; /* Hulk - Green */
+    --avenger-4-color: #800080; /* Hawkeye - Purple */
+    --avenger-5-color: #0055cc; /* Captain America - Blue */
+    --avenger-6-color: #cc0000; /* Black Widow - Red */
+    --hero-color: #333333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #131313;
+    color: #ffffff;
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Light mode styles */
+body.light-mode {
+    background-color: #f0f0f0;
+    color: #333333;
+}
+
+body.light-mode .Gallery a img {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .mode-toggle {
+    background-color: #333333;
+    color: #f0f0f0;
+}
+
+body.light-mode .back-button {
+    background-color: #333333;
+    color: #f0f0f0;
+}
+
+/* Gallery styles */
+.Gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.Gallery a {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.Gallery a img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.5s;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.Gallery a:hover img {
+    transform: scale(1.05);
+}
+
+/* Hero data attribute for hover effect */
+.Gallery a::after {
+    content: attr(data-hero);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    padding: 15px;
+    transform: translateY(100%);
+    transition: transform 0.3s;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.Gallery a:hover::after {
+    transform: translateY(0);
+}
+
+/* Mode toggle button */
+.mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    color: #131313;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.mode-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Back button */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    color: #131313;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+}
+
+/* Hero page styles */
+.hero-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+.hero-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.hero-header h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.hero-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background-color: var(--hero-color);
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.bio-section, .stats-section {
+    margin-bottom: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.bio-section h4, .stats-section h4 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--hero-color);
+    font-weight: 600;
+}
+
+.bio-section p, .stats-section p {
+    margin-bottom: 10px;
+}
+
+/* Power stat styles */
+.stat-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.stat-label {
+    width: 120px;
+    font-weight: 600;
+}
+
+.stat-bar {
+    flex-grow: 1;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    margin: 0 15px;
+    overflow: hidden;
+}
+
+.stat-fill {
+    height: 100%;
+    width: 0; /* Initial width, will be animated */
+    background-color: var(--hero-color);
+    border-radius: 5px;
+    transition: width 1s ease-out;
+}
+
+.stat-value {
+    width: 50px;
+    text-align: right;
+}
+
+/* Hero specific background and styling */
+body.avenger-1 {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/thor-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+body.avenger-2 {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/ironman-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+body.avenger-3 {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/hulk-bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+body.avenger-4 {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/hawkeye-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+body.avenger-5 {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/captain-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+body.avenger-6 {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/blackwidow-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .Gallery {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    
+    .Gallery a img {
+        height: 300px;
+    }
+    
+    .hero-header h2 {
+        font-size: 2rem;
+    }
+    
+    .bio-section, .stats-section {
+        padding: 15px;
+    }
+}
+
+/* Add a cool index page background */
+body:not([class*="avenger-"]) {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/avengers-team-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
